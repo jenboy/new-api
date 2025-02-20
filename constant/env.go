@@ -21,11 +21,16 @@ var GetMediaTokenNotStream = common.GetEnvOrDefaultBool("GET_MEDIA_TOKEN_NOT_STR
 
 var UpdateTask = common.GetEnvOrDefaultBool("UPDATE_TASK", true)
 
+var AzureDefaultAPIVersion = common.GetEnvOrDefaultString("AZURE_DEFAULT_API_VERSION", "2024-12-01-preview")
+
 var GeminiModelMap = map[string]string{
 	"gemini-1.0-pro": "v1",
 }
 
 var GeminiVisionMaxImageNum = common.GetEnvOrDefault("GEMINI_VISION_MAX_IMAGE_NUM", 16)
+
+var NotifyLimitCount = common.GetEnvOrDefault("NOTIFY_LIMIT_COUNT", 2)
+var NotificationLimitDurationMinute = common.GetEnvOrDefault("NOTIFICATION_LIMIT_DURATION_MINUTE", 10)
 
 func InitEnv() {
 	modelVersionMapStr := strings.TrimSpace(os.Getenv("GEMINI_MODEL_MAP"))
@@ -42,5 +47,5 @@ func InitEnv() {
 	}
 }
 
-// 是否生成初始令牌，默认关闭。
+// GenerateDefaultToken 是否生成初始令牌，默认关闭。
 var GenerateDefaultToken = common.GetEnvOrDefaultBool("GENERATE_DEFAULT_TOKEN", false)
